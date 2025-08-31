@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberShield - Security Portal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <!-- Landing Page -->
+            <div class="page active" id="landing-page">
+                <div class="header">
+                    <div class="logo">
+                        <i class="fas fa-shield-alt"></i>
+                        <h1>CyberShield</h1>
+                    </div>
+                    <p class="subtitle">Secure access to your digital world</p>
+                </div>
+                
+                <div style="text-align: center; margin: 40px 0;">
+                    <i class="fas fa-lock" style="font-size: 64px; color: var(--secondary); margin-bottom: 20px;"></i>
+                    <h2 style="margin-bottom: 10px;">Welcome to CyberShield</h2>
+                    <p style="color: var(--gray); max-width: 500px; margin: 0 auto;">Your trusted platform for secure authentication and cybersecurity awareness</p>
+                </div>
+                
+                <div style="max-width: 400px; margin: 40px auto;">
+                    <button class="btn btn-primary" onclick="showPage('login-page')">
+                        <i class="fas fa-sign-in-alt"></i> Login
+                    </button>
+                    <div class="divider"><span>or</span></div>
+                    <button class="btn btn-secondary" onclick="showPage('register-page')">
+                        <i class="fas fa-user-plus"></i> Register
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Login Page -->
+            <div class="page" id="login-page">
+                <div class="header">
+                    <div class="logo">
+                        <i class="fas fa-shield-alt"></i>
+                        <h1>Login</h1>
+                    </div>
+                    <p class="subtitle">Welcome back! Please enter your details</p>
+                </div>
+                
+                <div id="login-alert"></div>
+                
+                <form id="login-form">
+                    <div class="form-group">
+                        <label for="login-email">Email</label>
+                        <input type="email" id="login-email" placeholder="Enter your email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="login-password">Password</label>
+                        <input type="password" id="login-password" placeholder="Enter your password" required>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">Continue</button>
+                </form>
+                
+                <div class="divider"><span>New to CyberShield?</span></div>
+                
+                <button class="btn btn-secondary" onclick="showPage('register-page')">
+                    Create an Account
+                </button>
+                
+                <button class="btn btn-link" onclick="showPage('landing-page')">
+                    <i class="fas fa-arrow-left"></i> Back to Home
+                </button>
+            </div>
+            
+            <!-- Registration Page -->
+            <div class="page" id="register-page">
+                <div class="header">
+                    <div class="logo">
+                        <i class="fas fa-shield-alt"></i>
+                        <h1>Create Account</h1>
+                    </div>
+                    <p class="subtitle">Join us to enhance your cybersecurity</p>
+                </div>
+                
+                <div id="register-alert"></div>
+                
+                <form id="register-form">
+                    <div class="form-group">
+                        <label for="register-name">Full Name</label>
+                        <input type="text" id="register-name" placeholder="Enter your full name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="register-email">Email</label>
+                        <input type="email" id="register-email" placeholder="Enter your email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="register-password">Password</label>
+                        <input type="password" id="register-password" placeholder="Create a strong password" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="register-confirm">Confirm Password</label>
+                        <input type="password" id="register-confirm" placeholder="Confirm your password" required>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">Create Account</button>
+                </form>
+                
+                <div class="divider"><span>Already have an account?</span></div>
+                
+                <button class="btn btn-secondary" onclick="showPage('login-page')">
+                    Sign In
+                </button>
+                
+                <button class="btn btn-link" onclick="showPage('landing-page')">
+                    <i class="fas fa-arrow-left"></i> Back to Home
+                </button>
+            </div>
+            
+            <!-- 2FA Setup Page -->
+            <div class="page" id="twofa-setup-page">
+                <div class="header">
+                    <div class="logo">
+                        <i class="fas fa-shield-alt"></i>
+                        <h1>Two-Factor Authentication</h1>
+                    </div>
+                    <p class="subtitle">Set up 2FA for enhanced security</p>
+                </div>
+                
+                <div class="alert alert-info">
+                    <i class="fas fa-info-circle"></i> 
+                    Two-factor authentication adds an extra layer of security to your account
+                </div>
+                
+                <ol style="padding-left: 20px; margin-bottom: 20px;">
+                    <li style="margin-bottom: 10px;">Install Google Authenticator on your phone</li>
+                    <li style="margin-bottom: 10px;">Scan the QR code below with the app</li>
+                    <li style="margin-bottom: 10px;">Enter the 6-digit code generated by the app</li>
+                </ol>
+                
+                <div class="qrcode-container">
+                    <img id="qrcode-image" src="" alt="QR Code">
+                    <p style="margin-top: 15px; font-family: monospace;">Secret Key: <span id="secret-key"></span></p>
+                </div>
+                
+                <div class="form-group">
+                    <label for="twofa-code">Verification Code</label>
+                    <input type="text" id="twofa-code" placeholder="Enter 6-digit code" maxlength="6">
+                </div>
+                
+                <div class="nav-buttons">
+                    <button class="btn btn-secondary" onclick="showPage('register-page')">
+                        <i class="fas fa-arrow-left"></i> Back
+                    </button>
+                    <button class="btn btn-primary" onclick="verify2FASetup()">
+                        Verify & Continue
+                    </button>
+                </div>
+            </div>
+            
+            <!-- 2FA Verification Page -->
+            <div class="page" id="twofa-verify-page">
+                <div class="header">
+                    <div class="logo">
+                        <i class="fas fa-shield-alt"></i>
+                        <h1>Verify Your Identity</h1>
+                    </div>
+                    <p class="subtitle">Enter the code from your authenticator app</p>
+                </div>
+                
+                <div style="text-align: center; margin: 30px 0;">
+                    <i class="fas fa-mobile-alt" style="font-size: 64px; color: var(--secondary);"></i>
+                </div>
+                
+                <div class="form-group">
+                    <label for="twofa-verify-code">6-digit Verification Code</label>
+                    <input type="text" id="twofa-verify-code" placeholder="Enter code from authenticator app" maxlength="6">
+                </div>
+                
+                <button class="btn btn-primary" onclick="verify2FA()">Verify</button>
+                
+                <div style="text-align: center; margin-top: 20px;">
+                    <p style="color: var(--gray); font-size: 14px;">
+                        <i class="fas fa-question-circle"></i> 
+                        Can't access your authenticator app?
+                        <a href="#" style="color: var(--secondary);">Use backup code</a>
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Security Awareness Page -->
+            <div class="page" id="security-page">
+                <div class="header">
+                    <div class="logo">
+                        <i class="fas fa-shield-alt"></i>
+                        <h1>Security Awareness</h1>
+                    </div>
+                    <p class="subtitle">Important tips to protect your digital life</p>
+                </div>
+                
+                <div class="security-tips">
+                    <div class="tip-card">
+                        <i class="fas fa-key"></i>
+                        <h3>Strong Passwords</h3>
+                        <p>Use a combination of letters, numbers, and symbols. Avoid using personal information or common words.</p>
+                    </div>
+                    
+                    <div class="tip-card">
+                        <i class="fas fa-sync-alt"></i>
+                        <h3>Regular Updates</h3>
+                        <p>Keep your operating system, apps, and antivirus software updated to protect against known vulnerabilities.</p>
+                    </div>
+                    
+                    <div class="tip-card">
+                        <i class="fas fa-wifi"></i>
+                        <h3>Secure Connections</h3>
+                        <p>Avoid using public Wi-Fi for sensitive transactions. Use a VPN if you need to access confidential information.</p>
+                    </div>
+                    
+                    <div class="tip-card">
+                        <i class="fas fa-envelope"></i>
+                        <h3>Phishing Awareness</h3>
+                        <p>Be cautious of unsolicited emails asking for personal information. Verify the sender's address before clicking links.</p>
+                    </div>
+                    
+                    <div class="tip-card">
+                        <i class="fas fa-mobile-alt"></i>
+                        <h3>Device Security</h3>
+                        <p>Use passcodes, biometric authentication, and remote wipe capabilities on your mobile devices.</p>
+                    </div>
+                    
+                    <div class="tip-card">
+                        <i class="fas fa-cloud"></i>
+                        <h3>Backup Your Data</h3>
+                        <p>Regularly backup important files to an external drive or cloud service to prevent data loss from ransomware or hardware failure.</p>
+                    </div>
+                </div>
+                
+                <div style="text-align: center; margin-top: 40px;">
+                    <button class="btn btn-primary" onclick="showPage('landing-page')">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
