@@ -101,7 +101,7 @@ app.post('/setup-2fa', (req, res) => {
   
   // Generate a secret key for the user
   const secret = speakeasy.generateSecret({
-    name: CyberShield (${email})
+    name: `CyberShield (${email})`
   });
   
   // Generate QR code
@@ -174,5 +174,5 @@ app.post('/verify-login-2fa', (req, res) => {
 
 // Start server
 app.listen(port, () => {
-  console.log(Server running at http://localhost:${port});
+  console.log(`Server running at http://localhost:${port}`);
 });
